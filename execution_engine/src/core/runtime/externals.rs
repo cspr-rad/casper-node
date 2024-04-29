@@ -15,7 +15,7 @@ use casper_types::{
 
 use super::{args::Args, Error, Runtime};
 use crate::{
-    core::resolvers::v1_function_index::FunctionIndex,
+    core::{resolvers::v1_function_index::FunctionIndex, runtime::risc0_verifier},
     shared::host_function_costs::{Cost, HostFunction},
     storage::global_state::StateReader,
 };
@@ -1099,6 +1099,32 @@ where
                 let result = self.enable_contract_version(contract_package_hash, contract_hash)?;
 
                 Ok(Some(RuntimeValue::I32(api_error::i32_from(result))))
+            }
+            FunctionIndex::RiscZeroVerifier => {
+                let (
+                    proof_ptr,
+                    proof_size,
+                    out_ptr,
+                    out_size
+                ) = 
+                Args::parse(args)?;
+                self.charge_host_function_call(
+                    &host_function_costs.risc0_verifier,
+                    [
+                        proof_ptr,
+                        proof_size,
+                        out_ptr,
+                        out_size
+                    ]
+                )?;
+                let result: [u8; 1] =
+                    self.checked_memory_slice(proof_ptr as usize, proof_size as usize, |proof| {
+                            risc0_verifier::verify(proof)
+                })?;
+                self.try_get_memory().unwrap()
+                    .set(out_ptr, &result)
+                    .map_err(|error| Error::Interpreter(error.into()))?;
+                Ok(Some(RuntimeValue::I32(0)))
             }
         }
     }

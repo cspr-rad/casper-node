@@ -805,4 +805,10 @@ extern "C" {
         contract_hash_ptr: *const u8,
         contract_hash_size: usize,
     ) -> i32;
+    pub fn casper_risc_zero_verifier(
+        proof_ptr: *const u8,
+        proof_size: usize,
+        out_ptr: *const u8,
+        out_size: usize
+    ) -> i32;
 }
