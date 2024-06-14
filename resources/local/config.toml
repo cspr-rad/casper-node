@@ -317,7 +317,7 @@ address = '0.0.0.0:7777'
 qps_limit = 100
 
 # Maximum number of bytes to accept in a single request body.
-max_body_bytes = 2_621_440
+max_body_bytes = 2_621_440_00
 
 # Specifies which origin will be reported as allowed by RPC server.
 #
