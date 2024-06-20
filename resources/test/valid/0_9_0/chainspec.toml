@@ -5,7 +5,7 @@ activation_point = '2020-09-18T18:45:00Z'
 
 [network]
 name = 'test-chain'
-maximum_net_message_size = 23_068_672
+maximum_net_message_size = 25_165_824
 
 [core]
 era_duration = '3minutes'
@@ -47,13 +47,13 @@ block_max_transfer_count = 1000
 block_max_approval_count = 2600
 block_gas_limit = 13
 payment_args_max_length = 1024
-session_args_max_length = 1024
+session_args_max_length = 10000000
 native_transfer_minimum_motes = 2_500_000_000
 max_timestamp_leeway = '5 seconds'
 
 [wasm]
-max_memory = 17
-max_stack_height = 19
+max_memory = 640
+max_stack_height = 4000
 
 [wasm.opcode_costs]
 bit = 13
