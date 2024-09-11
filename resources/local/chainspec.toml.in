@@ -168,9 +168,9 @@ max_ttl = '18 hours'
 # The maximum number of approvals permitted in a single block.
 block_max_approval_count = 2600
 # Maximum block size in bytes including transactions contained by the block.  0 means unlimited.
-max_block_size = 10_485_760
+max_block_size = 141_943_040
 # The upper limit of total gas of all transactions in a block.
-block_gas_limit = 3_300_000_000_000
+block_gas_limit = 10_000_000_000_000_000
 # The minimum amount in motes for a valid native transfer.
 native_transfer_minimum_motes = 2_500_000_000
 # The maximum value to which `transaction_acceptor.timestamp_leeway` can be set in the config.toml file.
@@ -203,13 +203,13 @@ max_dependencies = 10
 # The limit of length of serialized payment code arguments.
 payment_args_max_length = 1024
 # The limit of length of serialized session code arguments.
-session_args_max_length = 1024
+session_args_max_length = 10000000
 
 [wasm]
 # Amount of free memory (in 64kB pages) each contract can use for stack.
-max_memory = 64
-# Max stack height (native WebAssembly stack limiter).
-max_stack_height = 500
+max_memory = 640
+# Max stack height (native WebAssembly stack limiter)
+max_stack_height = 4000
 
 [wasm.storage_costs]
 # Gas charged per byte stored in the global state.
