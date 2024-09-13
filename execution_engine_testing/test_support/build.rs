@@ -10,7 +10,6 @@ fn main() {
     let manifest_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
     let input_chainspec = Path::new(&manifest_dir)
         .join("resources")
-        .join("local")
         .join("chainspec.toml.in");
     let output_chainspec = Path::new(&manifest_dir)
         .join("resources")
